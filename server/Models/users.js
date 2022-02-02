@@ -13,6 +13,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  s_no: {
+    type: Number,
+    required: true,
+  },
   //   joining_date: {
   //     type: Date,
   //     required: true,
