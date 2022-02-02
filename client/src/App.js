@@ -2,7 +2,7 @@ import "./App.css";
 import useApi from "./services/useAPI";
 
 function App() {
-  const { loading, data, error } = useApi("http://localhost:5000/api/user");
+  const { loading, data, error } = useApi("http://localhost:5000/api/user", "GET");
   console.log(data)
   return <div className="App">Hello</div>;
 }

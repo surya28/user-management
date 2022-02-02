@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 
-const useApi = (url) => {
+const useApi = (url, method) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
   const [error, setError] = useState(false);
 
   const fetchApi = () => {
-    fetch(url)
+    fetch(url, {
+      method: method,
+    })
       .then((response) => {
         return response.json();
       })
