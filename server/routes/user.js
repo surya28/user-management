@@ -44,9 +44,10 @@ router.post("/add", async (req, res) => {
   }
 });
 
-router.delete("/delete", async (req, res) => {
+router.delete("/delete/:userId", async (req, res) => {
+  console.log(req.params);
   try {
-    const removedUser = await User.deleteOne({ s_no: req.body.userId });
+    const removedUser = await User.deleteOne({ s_no: req.params.userId });
     res.status(200).send({ message: "User deleted", data: removedUser });
   } catch (err) {
     res.send({ message: "could not delete user", data: err });
