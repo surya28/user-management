@@ -44,9 +44,8 @@ const Home = () => {
   }
 
   const deleteUser = (id) => {
-    fetch("http://localhost:5000/api/user/delete", {
+    fetch(`http://localhost:5000/api/user/delete/${id}`, {
       method: "DELETE",
-      body: JSON.stringify({ userId: id }),
     })
       .then((response) => {
         return response.json();
