@@ -1,10 +1,12 @@
 import "./App.css";
-import useApi from "./services/useAPI";
+import Home from "./home"
 
 function App() {
-  const { loading, data, error } = useApi("http://localhost:5000/api/user", "GET");
-  console.log(data)
-  return <div className="App">Hello</div>;
+  return (
+    <div className="App">
+      <Home />
+    </div>
+  );
 }
 
 export default App;
