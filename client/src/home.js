@@ -2,13 +2,13 @@ import React from "react";
 import useApi from "./services/useAPI";
 import UserForm from "./userForm";
 
-const Modal = ({ handleClose, show }) => {
+const Modal = ({ handleClose, show, setData }) => {
   const showHideClassName = show ? "modal display-block" : "modal display-none";
 
   return (
     <div className={showHideClassName}>
       <section className="modal-main">
-        <UserForm handleClose={handleClose} />
+        <UserForm handleClose={handleClose} setData={setData} />
       </section>
     </div>
   );
@@ -16,7 +16,7 @@ const Modal = ({ handleClose, show }) => {
 const Home = () => {
   const [users, setUsers] = React.useState(null);
   const [show, setShow] = React.useState(false);
-  const { loading, data, error } = useApi(
+  const { loading, data, error, setData } = useApi(
     "http://localhost:5000/api/user",
     "GET"
   );
@@ -56,6 +56,9 @@ const Home = () => {
   };
   return (
     <div className="home">
+      <div>
+        <h2>Users List</h2>
+      </div>
       <div className="btn-block">
         <button className="add" onClick={() => showModal()}>
           Add user
@@ -63,15 +66,23 @@ const Home = () => {
       </div>
       {users?.map((user, index) => (
         <div className="flex" key={index}>
-          <p>{user?.s_no}</p>
+          <p style={{ width: "1rem" }}>{user?.s_no}</p>
           <p>{user?.name}</p>
           <p>{user?.address}</p>
-          <button className="delete" onClick={() => deleteUser(user?.s_no)}>
+          <p>{user?.email}</p>
+          <p>{user?.address}</p>
+          <button
+            className="delete"
+            onClick={() => {
+              deleteUser(user?.s_no);
+              setData(null);
+            }}
+          >
             Delete
           </button>
         </div>
       ))}
-      <Modal handleClose={hideModal} show={show} />
+      <Modal handleClose={hideModal} show={show} setData={setData} />
     </div>
   );
 };

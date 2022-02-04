@@ -23,7 +23,7 @@
 
 .flex p,
 .flex button {
-  width: 25%;
+  width: 20%;
   overflow: none;
   flex-shrink: 0;
   flex-grow: 0;
@@ -104,7 +104,8 @@
 }
 
 input[type="text"],
-input[type="email"] {
+input[type="email"],
+input[type="date"] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -113,8 +114,11 @@ input[type="email"] {
   border-radius: 4px;
   box-sizing: border-box;
 }
+input[type="date"] {
+  cursor: pointer;
+}
 
-input[type="submit"] {
+button[type="submit"] {
   width: 100%;
   background-color: #4caf50;
   color: white;
@@ -126,7 +130,7 @@ input[type="submit"] {
   font-size: 1rem;
 }
 
-input[type="button"] {
+button[type="button"] {
   width: 100%;
   padding: 14px 20px;
   margin: 8px 0;

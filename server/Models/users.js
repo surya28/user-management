@@ -17,10 +17,10 @@ const userSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  //   joining_date: {
-  //     type: Date,
-  //     required: true,
-  //   },
+  joining_date: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("members", userSchema);

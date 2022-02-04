@@ -26,7 +26,12 @@ const useApi = (url, method) => {
     //eslint-disable-next-line
   }, []);
 
-  return { loading, data, error };
+  useEffect(() => {
+    fetchApi();
+    //eslint-disable-next-line
+  }, [data]);
+
+  return { loading, data, error, setData };
 };
 
 export default useApi;

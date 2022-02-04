@@ -25,7 +25,6 @@ router.get("/", async (req, res) => {
 router.post("/add", async (req, res) => {
   const emailExists = await User.findOne({ email: req.body.email });
   const serial_number = await getNextSequenceValue("userID");
-  console.log(serial_number);
   if (emailExists) {
     return res.status(400).send({ message: "E mail already exists" });
   }
@@ -35,6 +34,7 @@ router.post("/add", async (req, res) => {
     email: req.body.email,
     address: req.body.address,
     s_no: serial_number,
+    joining_date: req.body.doj,
   });
   try {
     const savedUser = await user.save();
@@ -45,7 +45,6 @@ router.post("/add", async (req, res) => {
 });
 
 router.delete("/delete/:userId", async (req, res) => {
-  console.log(req.params);
   try {
     const removedUser = await User.deleteOne({ s_no: req.params.userId });
     res.status(200).send({ message: "User deleted", data: removedUser });
