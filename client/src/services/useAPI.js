@@ -5,6 +5,10 @@ const useApi = (url, method) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(false);
 
+  const refetch = () => {
+    setData(null);
+  };
+
   const fetchApi = () => {
     fetch(url, {
       method: method,
@@ -27,11 +31,11 @@ const useApi = (url, method) => {
   }, []);
 
   useEffect(() => {
-    fetchApi();
+    if (data === null) fetchApi();
     //eslint-disable-next-line
   }, [data]);
 
-  return { loading, data, error, setData };
+  return { loading, data, error, refetch };
 };
 
 export default useApi;

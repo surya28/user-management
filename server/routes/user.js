@@ -44,6 +44,25 @@ router.post("/add", async (req, res) => {
   }
 });
 
+router.post("/update", async (req, res) => {
+  try {
+    const updatedUser = await User.findOneAndUpdate(
+      { email: req.body.email },
+      {
+        $set: {
+          name: req.body.name,
+          address: req.body.address,
+          joining_date: req.body.doj,
+        },
+      },
+      { new: true }
+    );
+    res.send({ message: "User updated successfully", data: updatedUser });
+  } catch (err) {
+    res.send({ message: "Could not edit User", data: err });
+  }
+});
+
 router.delete("/delete/:userId", async (req, res) => {
   try {
     const removedUser = await User.deleteOne({ s_no: req.params.userId });

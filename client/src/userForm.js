@@ -1,16 +1,22 @@
 import React from "react";
 import { Formik } from "formik";
 
-const UserForm = ({ handleClose, setData }) => {
+const UserForm = ({ handleClose, setData, initialValues }) => {
   React.useEffect(() => {
     return function () {
       return null;
     };
   }, []);
+  console.log(initialValues?.name);
   return (
     <div className="form-container">
       <Formik
-        initialValues={{ email: "", name: "", address: "", doj: "" }}
+        initialValues={{
+          email: initialValues?.email,
+          name: initialValues?.name,
+          address: initialValues?.address,
+          doj: initialValues?.joining_date,
+        }}
         validate={(values) => {
           const errors = {};
           if (!values.email) {
@@ -49,7 +55,7 @@ const UserForm = ({ handleClose, setData }) => {
             .then(() => {
               resetForm();
               handleClose();
-              setData(null)
+              setData();
             })
             .catch((err) => {
               console.log(err);
